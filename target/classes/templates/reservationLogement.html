@@ -26,7 +26,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
                                 <style>body {
-    background-image: linear-gradient(to right, #2b2e4b, #704875)
+    background-image: linear-gradient(to right, #7EB6C2, #74A7B3)
 }
 
 .section {
@@ -419,7 +419,7 @@ section {
                             </head>
                             <body oncontextmenu='return false' class='snippet-body'>
                                 <header>
-                                    <div class="collapse bg-dark" id="navbarHeader">
+<!--                                    <div class="collapse bg-dark" id="navbarHeader">
                                       <div class="container">
                                         <div class="row">
                                           <div class="col-sm-8 col-md-7 py-4">
@@ -436,17 +436,25 @@ section {
                                           </div>
                                         </div>
                                       </div>
-                                    </div>
-                                    <div class="navbar navbar-dark bg-dark box-shadow">
-                                      <div class="container d-flex justify-content-between " style="font-family: Georgia, serif;font-weight: bold;font-size:25">
-                                       
-                                       <a class="flex-sm-fill text-sm-center nav-link active" href="#">Accueil</a>
-                                <a class="flex-sm-fill text-sm-center nav-link" href="#">Expérience</a>
+                                    </div>-->
+                                    
+                                    <div class="navbar navbar-dark bg-dark box-shadow"  style="background-color: #666666 !important;"  >
+                                      
+                                        <div class="container d-flex justify-content-between " style="font-family: Georgia, serif;font-weight: bold;font-size:25">
+                                            <a class="navbar-brand" href="#">
+                                             <!--   <img src="/Fintbat2.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                                                Fintbat-->
+                                             <!--   <h3>Fin<span>Tbat</span></h3>-->
+                                              </a>
+                                      
+                                           
+                                       <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="/test">Accueil</a>
+                                <a class="flex-sm-fill text-sm-center nav-link itemessss" href="#">Expérience</a>
                                 <!-- <a class="flex-sm-fill text-sm-center nav-link  " href="#">Héberger des voyageurs</a> -->
-                                 <a class="flex-sm-fill text-sm-center nav-link " href="/AffichageFavoris">Mes Favoris</a>
+                                 <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/AffichageFavoris">Mes Favoris</a>
                                 <!-- <a class="flex-sm-fill text-sm-center nav-link " href="#">Devenez Hôte</a> -->
                                        <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn btn-secondary dropdown-toggle itemessss" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Compte
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -471,11 +479,11 @@ section {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group"> <input class="form-control" type="date" name="arrival_date"
-             th:value="${reservation.arrival_date}" placeholder="Date d'arrivee"> <span class="form-label">Check In</span> </div>
+             th:value="${reservation.arrival_date}" placeholder="Date d'arrivee"> <span class="form-label" style="	color:  lightseagreen;">Check In</span> </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group"> <input class="form-control" type="date" name="departure_date"
-             th:value="${reservation.departure_date}" placeholder="Date de depart"> <span class="form-label">Check out</span> </div>
+             th:value="${reservation.departure_date}" placeholder="Date de depart"> <span class="form-label" style="	color:  lightseagreen;">Check out</span> </div>
                             </div>
                         </div>
                         <div class="row">
@@ -514,7 +522,8 @@ section {
                                 <div class="form-group"> <input class="form-control" type="tel" name="numero_telephone"  th:value="${reservation.numero_telephone}" placeholder="Numéro de téléphone"> <span class="form-label">Phone</span> </div>
                             </div>
                         </div>
-                        <div class="form-btn"> <button class="submit-btn">Réserver</button> </div>
+                       
+                        <div class="form-btn"> <button class="submit-btn" style="	background-color:  lightseagreen;">Réserver</button> </div>
                     </form>
                 </div>
             </div>
@@ -580,6 +589,7 @@ section {
 <a href="#"><i class="icon ion-social-twitter"></i></a>
 <a href="#"><i class="icon ion-social-snapchat"></i></a>
 <a href="#"><i class="icon ion-social-instagram"></i></a>
+
 </div>
 					
 

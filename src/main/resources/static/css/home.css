@@ -9,6 +9,11 @@
 .navbar{
 	height:120px !important;
 	margin-bottom: 0 !important;
+	color: lightskyblue;
+}
+.itemessss{
+		color:lightseagreen;
+	
 }
 .images img {
 	 width: 1600px ;
