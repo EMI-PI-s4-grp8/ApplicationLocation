@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">  
+<title>Reclamation</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/style1.css" th:href="@{/css/style1.css}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+</head>
+<body style="background-color: #ededed;">
+	<div style="background-color: #337ab7; height: 50px;"></div>
+	<div class="container-fluid" style="margin-top: 30px;">
+
+		<div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+			  
+				<h3 class="form-signin-heading">Ajouter une Reclamation</h3>
+       <div class="panel-body">
+         <form th:action="@{saveR}" method="post" >
+         	
+           <div class="form-group">
+             <label class="control-label">Email</label>
+             <input class="form-control" type="text" name="email"
+             th:value="${reclamation.email}"  placeholder="name@example.com">
+             <span class="text-danger" th:errors="*{reclamation.email}"></span>
+             
+           </div>
+           <div class="form-group">
+             <label class="control-label">Objet:</label>
+             <input class="form-control" type="text" name="objet"
+             th:value="${reclamation.objet}">
+             <span class="text-danger" th:errors="*{reclamation.objet}"></span>
+        	</div>
+        	<div class="form-group">
+             <label class="control-label">Message:</label>
+             
+             <textarea class="form-control"  rows="3" type="text" name="message"
+             th:value="${reclamation.message}"></textarea>
+             <span class="text-danger" th:errors="*{reclamation.message}"></span> 
+            </div>
+           
+           <div>
+             <button type="submit" onclick="return confirm('Etes vous sure?')" class="btn btn-secondary">Envoyer</button>
+           </div>
+         </form>
+       </div>
+     </div>
+  </div>
+</body>
+
+<!----------- Footer ------------>
+ <section>FinTbat</section>
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Fin<span>Tbat</span></h3>
+
+				<p class="footer-links">
+					<a href="#" class="link-1">Acceuil</a>
+					
+					<a href="#">Chercher</a>
+				
+					<a href="#">Devenir Hote</a>
+				
+					<a href="#">About</a>
+					
+					<a href="#">Avis</a>
+					
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">FinTbat © 2021</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>FinTbat</span>Maroc, Rabat, Emi</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>0612345678</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:fintbat@gmail.com">fintbat@gmail.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Fintbat est un site web de location de logement, qui vous permet de trouver le logement de vos reves, ainsi vous pouvez 
+					aussi devenir un hote et lancer votre annonce de logement dans FinTbat !!
+				</p>
+
+				<div class="footer-icons">
+<div class="col item social">
+<a href="#"><i class="icon ion-social-facebook"></i></a>
+<a href="#"><i class="icon ion-social-twitter"></i></a>
+<a href="#"><i class="icon ion-social-snapchat"></i></a>
+<a href="#"><i class="icon ion-social-instagram"></i></a>
+</div>
+					
+
+				</div>
+
+			</div>
+
+		</footer></div>
+</html>
