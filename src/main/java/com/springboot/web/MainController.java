@@ -91,12 +91,8 @@ public class MainController {
 			model.addAttribute("contents", "shopMap :: shop_map");
 			return "homeLayout";
 		}
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
 	
-	@GetMapping("/")
+	@GetMapping("/app")
 	public String home() {
 		return "app";
 	}
@@ -178,7 +174,7 @@ return "redirect:indexR";
 					logementRepository.chercher("%"+mc+"%");
 			model.addAttribute("listLogements",pageLogements);
 					model.addAttribute("motCle",mc);
-			return "index";
+			return "org";
 			
 		}
 		

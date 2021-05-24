@@ -1,39 +1,78 @@
 package com.springboot.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "role")
+import org.hibernate.validator.constraints.NotEmpty;
+
+
+/**
+ * @author Caio Fernando
+ */
+
+ @Entity
+ @Table(name = "roles")
 public class Role {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;
-	
-	public Role() {
-		
-	}
-	
-	public Role(String name) {
-		super();
-		this.name = name;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    
+    @Column(nullable = false,unique = true)
+    @NotEmpty
+    private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private List < User > users;
+    
+
+    /**
+     * @return Integer return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return String return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return List<User> return the users
+     */
+    public List<User> getUsers() {
+        return users;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
 }
