@@ -20,9 +20,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 
-/**
- * @author Caio Fernando
- */
 
  @Entity
  @Table(name = "USERS")

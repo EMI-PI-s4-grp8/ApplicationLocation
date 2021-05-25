@@ -396,7 +396,7 @@ return "redirect:indexR";
 					model.addAttribute("pages",pages);
 					model.addAttribute("size",s);
 					model.addAttribute("pageCourante",p);
-					return "recherche";
+					return "proprietairehome";
 					}
 				else {
 					List<Logement> pageLogements=
@@ -407,7 +407,7 @@ return "redirect:indexR";
 					//model.addAttribute("size",s);
 					//model.addAttribute("pageCourante",p);
 					model.addAttribute("motCle",mc);
-					return "recherche";
+					return "proprietairehome";
 					
 				}
 			

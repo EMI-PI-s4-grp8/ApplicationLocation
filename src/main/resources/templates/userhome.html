@@ -3,25 +3,194 @@
  xmlns:th="http://www.thymeleaf.org"
  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
- layout:decorator="layout">
+>
 <head>
    <title>User Home</title>
+   <link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/myStyle.css" th:href="@{/css/myStyle.css}"/>
+	
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	<!-- CSS here -->
+      
+       <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css"
+	href="../static/css/style1.css" th:href="@{/css/style1.css}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 </head>
+<header>
+
+      <div class="collapse bg-dark" id="navbarHeader">
+      
+      
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">Add some information about the album below, the author, or any other background context.
+               Make it a few sentences long so folks can pick up some informative tidbits. 
+               Then, link them off to some social networking sites or contact information.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between " style="font-family: Georgia, serif;font-weight: bold;font-size:25">
+         <div class="row">
+ 
+ 
+	</div>
+	 
+	<a  class="flex-sm-fill text-sm-center nav-link  " href="/index1">
+   Welcome <span sec:authentication="principal.username">User</span>
+  </a>
+     <a class="flex-sm-fill text-sm-center nav-link active" href="/test">Accueil</a>
+  <a class="flex-sm-fill text-sm-center nav-link" href="/indexExp">Expérience</a>
+   <a class="flex-sm-fill text-sm-center nav-link active" th:href="@{/logout}">Logout</a>
+  
+  
+
+         <div class="dropdown">
+  <button style="height:1cm;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Compte
+  </button>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/formR">Contactez nous</a>
+    <a class="dropdown-item" href="/indexR">Lister les Reclamations</a>
+  <a class="dropdown-item" hidden href="/logout"> Deconnection </a>
+    <a class="dropdown-item" href="/login">Connexion</a>
+    <a class="dropdown-item" href="/registration">Inscription</a>
+    <a class="dropdown-item" href="#">Aide</a>
+  </div>
+</div>
+        </div>
+      </div>
+    </header>
 <body>
  <div layout:fragment="content">
-  <p>
-   Welcome <span sec:authentication="principal.username">User</span>
-  </p>
-  <p>
-   <a th:href="@{/logout}">Logout</a>
-  </p>
-  <div sec:authorize="hasRole('ROLE_ADMIN')">
-   <h3>You will see this only if you are ADMIN</h3>
-   <p>
-    <a th:href="@{/admin/home}">Admin Home</a>
-   </p>
+  
+  
+  <div sec:authorize="hasRole('ROLE_PROPRIETAIRE')">
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/img/louer.jpg" alt="" width="700" height="400">
+    </div>
+    <div class="col-md-8" style="left:600px ">
+      <div class="card-body">
+        <h5 class="card-title" style ="font-weight: bold; font-size: 25px ; "  ><a href="/index1">Consulter Votre espace </a></h5>
+        
+        <p class="card-text" style ="font-weight:lighter; font-size: 20px " ><small class="text-muted">Une fois votre annonce publiée, vous pourrez la modifier à tout moment.</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+   
+   
   </div>
   
  </div>
 </body>
+<section>FinTbat</section>
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Fin<span>Tbat</span></h3>
+
+				<p class="footer-links">
+					<a href="#" class="link-1">Acceuil</a>
+					
+					<a href="#">Chercher</a>
+				
+					<a href="#">Devenir Hote</a>
+				
+					<a href="#">About</a>
+					
+					<a href="#">Avis</a>
+					
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">FinTbat © 2021</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>FinTbat</span>Maroc, Rabat, Emi</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>0612345678</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:fintbat@gmail.com">fintbat@gmail.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Fintbat est un site web de location de logement, qui vous permet de trouver le logement de vos reves, ainsi vous pouvez 
+					aussi devenir un hote et lancer votre annonce de logement dans FinTbat !!
+				</p>
+
+				<div class="footer-icons">
+<div class="col item social">
+<a href="#"><i class="icon ion-social-facebook"></i></a>
+<a href="#"><i class="icon ion-social-twitter"></i></a>
+<a href="#"><i class="icon ion-social-snapchat"></i></a>
+<a href="#"><i class="icon ion-social-instagram"></i></a>
+</div>
+					
+
+				</div>
+
+			</div>
+
+		</footer>
 </html>

@@ -55,14 +55,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                         , "/webjars/**"
                         ,"/assets/**"
                         ,"/h2/**"
+                        ,"/test/**"
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/index1/**").hasRole("PROPRIETAIRE")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()
