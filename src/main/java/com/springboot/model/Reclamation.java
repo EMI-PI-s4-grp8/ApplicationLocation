@@ -25,6 +25,7 @@ public class Reclamation {
 	@NotEmpty
 	@Size(min=0,max=150)
 	private String message;
+	
 	public Reclamation() {
 		super();
 		// TODO Auto-generated constructor stub
