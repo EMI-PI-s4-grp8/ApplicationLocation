@@ -55,16 +55,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                         , "/webjars/**"
                         ,"/assets/**"
                         ,"/h2/**"
+<<<<<<< HEAD
                         ,"test"
+=======
+>>>>>>> branch 'main' of https://github.com/EMI-PI-s4-grp8/ApplicationLocation.git
                         ,"/test/**"
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/homePRO/**,/index1/**").hasRole("PROPRIETAIRE")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()
