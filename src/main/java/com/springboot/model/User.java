@@ -1,58 +1,70 @@
 package com.springboot.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.JoinColumn;
 
-@Entity
-@Table(name =  "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+
+
+ @Entity
+ @Table(name = "USERS")
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private Long id;
-   
-	@Column(name = "first_name")
-	private String firstName;
-	@Column(name = "last_name")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column(nullable = false)
+    @NotEmpty()
+    private String firstName;
 	
 	private String lastName;
-	
-	private String email;
-	
-	private String password;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "users_roles",
-			joinColumns = @JoinColumn(
-		            name = "user_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(
-				            name = "role_id", referencedColumnName = "id"))
-	
-	private Collection<Role> roles;
-	
-	public User() {
-		
-	}
-	
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+    
+
+    @Column(nullable = false,unique = true)
+    @NotEmpty
+    @Email(message = "{erros.invalid_email}")
+    private String email;
+
+    @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 4)
+    private String password;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+        name = "users_roles",
+        joinColumns = {@JoinColumn(name="USER_ID", referencedColumnName = "ID")},
+        inverseJoinColumns = {@JoinColumn(name="ROLE_ID",referencedColumnName = "ID")}
+    )
+    private List <Role> roles;
+    
+    /* @OneToMany(mappedBy = "users")
+    private List<Message> messages; */
+    /**
+     * @return Integer return the id
+     * 
+     */
+    public User() {
+ 		super();
+ 		
+ 	}
+    public User(String firstName, String lastName, String email, String password, List<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -60,41 +72,76 @@ public class User {
 		this.password = password;
 		this.roles = roles;
 	}
-	public Long getId() {
-		return id;
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return String return the name
+     */
+   
+    /**
+     * @return String return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return String return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return List<Role> return the roles
+     */
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    /**
+     * @param roles the roles to set
+     */
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+	public String getLastName() {
+		return lastName;
 	}
-	public void setId(Long id) {
-		this.id = id;
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Collection<Role> getRoles() {
-		return roles;
-	}
-	public void setRoles(Collection<Role> roles) {
-		this.roles = roles;
 	}
 
 }

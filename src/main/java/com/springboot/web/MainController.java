@@ -91,12 +91,8 @@ public class MainController {
 			model.addAttribute("contents", "shopMap :: shop_map");
 			return "homeLayout";
 		}
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
 	
-	@GetMapping("/")
+	@GetMapping("/app")
 	public String home() {
 		return "app";
 	}
@@ -178,7 +174,7 @@ return "redirect:indexR";
 					logementRepository.chercher("%"+mc+"%");
 			model.addAttribute("listLogements",pageLogements);
 					model.addAttribute("motCle",mc);
-			return "index";
+			return "org";
 			
 		}
 		
@@ -386,6 +382,11 @@ return "redirect:indexR";
 			  favorisRepository.deleteById(id);
 			  return "redirect:/AffichageFavoris"; 
 		  }
+		  @GetMapping("/homePRO")
+		  public String homePRO(){
+			
+			  return "homePRO"; 
+		  }
 		  
 
 		  @RequestMapping(value="/index1")
@@ -400,7 +401,7 @@ return "redirect:indexR";
 					model.addAttribute("pages",pages);
 					model.addAttribute("size",s);
 					model.addAttribute("pageCourante",p);
-					return "recherche";
+					return "proprietairehome";
 					}
 				else {
 					List<Logement> pageLogements=
@@ -411,11 +412,12 @@ return "redirect:indexR";
 					//model.addAttribute("size",s);
 					//model.addAttribute("pageCourante",p);
 					model.addAttribute("motCle",mc);
-					return "recherche";
+					return "proprietairehome";
 					
 				}
 			
 			}
+		 
 
 		  
 //		  @GetMapping("/delete")
