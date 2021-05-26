@@ -55,6 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                         , "/webjars/**"
                         ,"/assets/**"
                         ,"/h2/**"
+
+                        ,"test"
+
                         ,"/test/**"
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
