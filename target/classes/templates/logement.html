@@ -510,9 +510,14 @@ section {
                        
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"> <input class="form-control" type="text" name="capacite" th:value="${logement.capacite}" placeholder="Capacité"> <span class="form-label" style="	color:  lightseagreen;">Capacité</span> </div>
-                            </div>
                         
+                                <div class="form-group"> <select class="form-control" required name="capacite"  th:value="${logement.capacite}" placeholder="Capacité">
+                                        <option value="" selected hidden>Capacité</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select> <span class="select-arrow" style="	color:  lightseagree;n"></span> <span class="form-label">Capacité</span> </div>
+                            </div>
                         
                             <div class="col-md-6">
                                 <div class="form-group"> <input class="form-control" type="text" name="prix" th:value="${logement.prix}" placeholder="Prix"> <span class="form-label" style="	color:  lightseagreen;">Prix</span> </div>
