@@ -474,12 +474,12 @@ section {
                     <div class="form-header">
                         <h1>Ajouter une annonce</h1>
                     </div>
-                    <form th:action="@{save}" method="post">
+                    <form th:action="@{save}" method="post" enctype="multipart/form-data">
                         
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group"> <input class="form-control" type="text" name="text"  th:value="${logement.intitule}" placeholder="Entrer un intitulé"> <span class="form-label">Intitulé du logement</span> </div>
+                                <div class="form-group"> <input class="form-control" type="text" name="intitule"  th:value="${logement.intitule}" placeholder="Entrer un intitulé"> <span class="text-danger" th:errors="*{logement.intitule}"></span><span class="form-label">Intitulé du logement</span> </div>
                             </div>
                             
                             <div class="col-md-6">
@@ -521,7 +521,7 @@ section {
 
 
                        
-                        <div class="form-btn"> <button class="submit-btn" style="	background-color:  lightseagreen;">Envoyer</button> </div>
+                        <div class="form-btn"> <button class="submit-btn" style="	background-color:  lightseagreen;">Enregistrer</button> </div>
                     </form>
                 </div>
             </div>
