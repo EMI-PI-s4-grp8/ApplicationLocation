@@ -54,16 +54,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
              .antMatchers("/resources/**"
                         , "/webjars/**"
                         ,"/assets/**"
-                        ,"/h2/**"
-                        ,"/test/**"
+                        ,"/h2/**","/supprimerR/**","/save/**","/getPhoto/**","/affichageLog/**","/edit/**","/formReserv/**"
+                        ,"/test/**","/paiement/**","/Confirm/**","/AffichageReserv/**","/deleteReserv/**","/editReserv/**","/delete/**"
+                        ,"/js/**","/AffichageFavoris/**","/deleteFavoris/**","/formExp/**","/saveExp/**","/indexExp/**","/supprimerExp/**"
+    	               , "/css/**","/supprimerttExp/**","/modifierExp/**"
+    	                ,"/test/**",
+    	                "/img/**",
+    	                "/accueil**"
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/index1/**").hasRole("PROPRIETAIRE")
+                .antMatchers("/index1/**","/homePRO/**","/form/**").hasRole("PROPRIETAIRE")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/test")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()
