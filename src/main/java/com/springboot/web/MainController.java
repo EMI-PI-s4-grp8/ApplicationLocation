@@ -382,6 +382,11 @@ return "redirect:indexR";
 			  favorisRepository.deleteById(id);
 			  return "redirect:/AffichageFavoris"; 
 		  }
+		  @GetMapping("/homePRO")
+		  public String homePRO(){
+			
+			  return "homePRO"; 
+		  }
 		  
 
 		  @RequestMapping(value="/index1")
@@ -412,6 +417,7 @@ return "redirect:indexR";
 				}
 			
 			}
+		 
 
 		  
 //		  @GetMapping("/delete")

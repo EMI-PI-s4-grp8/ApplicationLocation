@@ -54,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
              .antMatchers("/resources/**"
                         , "/webjars/**"
                         ,"/assets/**"
+
                         ,"/h2/**","/supprimerR/**","/save/**","/getPhoto/**","/affichageLog/**","/edit/**","/formReserv/**"
                         ,"/test/**","/paiement/**","/Confirm/**","/AffichageReserv/**","/deleteReserv/**","/editReserv/**","/delete/**"
                         ,"/js/**","/AffichageFavoris/**","/deleteFavoris/**","/formExp/**","/saveExp/**","/indexExp/**","/supprimerExp/**"
@@ -61,9 +62,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     	                ,"/test/**",
     	                "/img/**",
     	                "/accueil**"
+
+                        ,"/h2/**"
+
+                        ,"test"
+
+                        ,"/test/**"
+
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
+
                 .antMatchers("/index1/**","/homePRO/**","/form/**").hasRole("PROPRIETAIRE")
+
+                .antMatchers("/homePRO/**,/index1/**").hasRole("PROPRIETAIRE")
+
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
