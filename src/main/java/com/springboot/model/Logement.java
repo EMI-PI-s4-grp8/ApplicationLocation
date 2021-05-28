@@ -20,19 +20,19 @@ public class Logement {
 	
 	@Id @GeneratedValue
 	private Long id;
-	//@NotNull
+
 	@Size(min=5,max=50)
-	@NotEmpty
+
 	private String intitule;
-	@NotEmpty
+
 	private String description;
-	//@Size(min=20,max=10000)
+	
 	private double prix;
 	@Size(min=5,max=100)
 	private String adresse;
-	//@Size(min=0)
+	
 	private int capacite;
-	//@Value("${dir.images}")
+
 	private String image;
 	
 //	@Id @GeneratedValue
