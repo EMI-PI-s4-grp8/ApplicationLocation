@@ -2,6 +2,7 @@ package com.springboot.web;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 //import java.io.FileNotFoundException;
 //import java.io.IOException;
 import java.util.List;
@@ -29,6 +30,7 @@ import com.springboot.model.Experience;
 import com.springboot.model.Favoris;
 import com.springboot.model.Logement;
 import com.springboot.model.Reclamation;
+import com.springboot.model.ReclamationTraite;
 import com.springboot.model.Reservation;
 import com.springboot.repository.ExperienceRepository;
 import com.springboot.repository.FavorisRepository;
@@ -36,7 +38,9 @@ import com.springboot.repository.LogementRepository;
 import com.springboot.repository.ReclamationRepository;
 import com.springboot.repository.ReservationRepository;
 import com.springboot.repository.MailRepository;
+import com.springboot.repository.RecTraiteRepository;
 import com.springboot.model.Mail;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.springboot.RegistrationLoginSpringBootSecurityThymeleafApplication;
 @Controller
 public class MainController {
@@ -53,9 +57,43 @@ public class MainController {
 	private ReclamationRepository reclamationRepository;
 	@Autowired
 	private FavorisRepository favorisRepository;
+	@Autowired
+	private RecTraiteRepository recTraiteRepository;
 
 	
 	  @Value("${x}") private String imageDir;
+	  
+	//repondre reclamation
+	  @RequestMapping(value="/repondreR",method=RequestMethod.GET)
+		 public String FormRepondre(@Valid ReclamationTraite tr,@Valid Reclamation rec,Model model,Long id,String email,String objet,String message) {
+			 model.addAttribute("mail",new Mail(email,objet));
+			 recTraiteRepository.save(new ReclamationTraite(email,objet,message));
+			 supprimerR(id);
+			 //reclamationRepository.deleteById(id);
+			 
+		
+			
+		 return "mail";
+		 }
+			
+		@RequestMapping(value="/sendemail",method=RequestMethod.POST)
+		public String save(@Valid ReclamationTraite tr,@Valid Mail mail,BindingResult bindingResult) {
+			  if(bindingResult.hasErrors()) {
+				  return "mail"; }
+			  mailRepository.save(mail);
+			  //recTraiteRepository.save(tr);
+			 
+			  registrationLoginSpringBootSecurityThymeleafApplication.sendEmail(mail);
+			  return "redirect:indexR"; 
+			}
+		@RequestMapping(value="/pdf",method=RequestMethod.POST)
+		public String pdf() throws IOException{
+
+			HtmlConverter.convertToPdf(new File("./confirmation.html"),new File("confirmation.pdf"));
+			return "confirmation";
+			}
+		
+	  
 	  @GetMapping("test/dispo")
 		public String dispo(Model model,
 				
@@ -97,21 +135,21 @@ public class MainController {
 		return "app";
 	}
 	
-	//repondre reclamation
-		@RequestMapping(value="/repondreR",method=RequestMethod.GET)
-		 public String FormRepondre(Model model,String email,String objet) {
-			 model.addAttribute("mail",new Mail(email,objet));
-		 return "mail";
-		 }
-			
-		@RequestMapping(value="/sendemail",method=RequestMethod.POST)
-		public String save(@Valid Mail mail,BindingResult bindingResult) {
-			  if(bindingResult.hasErrors()) {
-				  return "mail"; }
-			  mailRepository.save(mail);
-			  registrationLoginSpringBootSecurityThymeleafApplication.sendEmail(mail);
-			  return "redirect:indexR"; 
-			}	 
+//	//repondre reclamation
+//		@RequestMapping(value="/repondreR",method=RequestMethod.GET)
+//		 public String FormRepondre(Model model,String email,String objet) {
+//			 model.addAttribute("mail",new Mail(email,objet));
+//		 return "mail";
+//		 }
+//			
+//		@RequestMapping(value="/sendemail",method=RequestMethod.POST)
+//		public String save(@Valid Mail mail,BindingResult bindingResult) {
+//			  if(bindingResult.hasErrors()) {
+//				  return "mail"; }
+//			  mailRepository.save(mail);
+//			  registrationLoginSpringBootSecurityThymeleafApplication.sendEmail(mail);
+//			  return "redirect:indexR"; 
+//			}	 
 		
 //////////////////////reclamation
 @RequestMapping(value="/formR",method=RequestMethod.GET)
@@ -129,24 +167,38 @@ return "reclamation"; }
 
 @RequestMapping(value="/indexR")
 public String indexR(Model model,
-@RequestParam(name="page",defaultValue="0")int p,
-@RequestParam(name="size",defaultValue="30")int s
-) {
-
-Page<Reclamation> pageReclamations=reclamationRepository.findAll(PageRequest.of(p, s));
-model.addAttribute("listReclamations",pageReclamations.getContent());
-int[] pages=new int[pageReclamations.getTotalPages()];
-model.addAttribute("pages",pages);
-model.addAttribute("size",s);
-model.addAttribute("pageCourante",p);
-return "rechercheR";
-}
-
+		@RequestParam(name="page",defaultValue="0")int p,
+		@RequestParam(name="size",defaultValue="30")int s
+		) {
+	
+		Page<Reclamation> pageReclamations=reclamationRepository.findAll(PageRequest.of(p, s));
+		model.addAttribute("listReclamations",pageReclamations.getContent());
+		
+		//
+		List<ReclamationTraite> pageReclamationTraite=recTraiteRepository.chercherRT();
+		model.addAttribute("listReclamationTraite",pageReclamationTraite);
+//		int[] pageT=new int[pageReclamations.getTotalPages()];
+//		model.addAttribute("pages",pageT);
+//		model.addAttribute("size",s);
+//		model.addAttribute("pageCourante",p);
+		//List<ReclamationTraite> listRT=recTraiteRepository.chercherRT();
+		//model.addAttribute("listReclamationTraite",listRT);
+		int[] pages=new int[pageReclamations.getTotalPages()];
+		model.addAttribute("pages",pages);
+		model.addAttribute("size",s);
+		model.addAttribute("pageCourante",p);
+		return "rechercheR";
+		}
 @RequestMapping(value="/supprimerR")
 public String supprimerR(Long id) {
 reclamationRepository.deleteById(id);
 return "redirect:indexR";
 }
+@RequestMapping(value="/supprimerRT")
+public String supprimerRT(Long id) {
+	recTraiteRepository.deleteById(id);
+	return "redirect:indexR";
+}	
 
 	
 	///test
@@ -205,6 +257,7 @@ return "redirect:indexR";
 		if(!(file.isEmpty())) {
 			logement.setImage(file.getOriginalFilename());
 			logementRepository.save(logement);
+			registrationLoginSpringBootSecurityThymeleafApplication.sendConfirm(logement);
 			 file.transferTo(new File(imageDir+logement.getId())); 
 						}
 		
@@ -382,6 +435,11 @@ return "redirect:indexR";
 			  favorisRepository.deleteById(id);
 			  return "redirect:/AffichageFavoris"; 
 		  }
+		  @GetMapping("/homePRO")
+		  public String homePRO(){
+			
+			  return "homePRO"; 
+		  }
 		  
 
 		  @RequestMapping(value="/index1")
@@ -396,7 +454,7 @@ return "redirect:indexR";
 					model.addAttribute("pages",pages);
 					model.addAttribute("size",s);
 					model.addAttribute("pageCourante",p);
-					return "recherche";
+					return "proprietairehome";
 					}
 				else {
 					List<Logement> pageLogements=
@@ -407,11 +465,12 @@ return "redirect:indexR";
 					//model.addAttribute("size",s);
 					//model.addAttribute("pageCourante",p);
 					model.addAttribute("motCle",mc);
-					return "recherche";
+					return "proprietairehome";
 					
 				}
 			
 			}
+		 
 
 		  
 //		  @GetMapping("/delete")
