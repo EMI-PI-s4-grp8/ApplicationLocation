@@ -1,14 +1,15 @@
 package com.springboot.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
+//import lombok.ToString;
+
+//@Data
 @AllArgsConstructor
-@NoArgsConstructor
-@ToString
+//@NoArgsConstructor
+//@ToString
 public class Order {
 
 	private double price;
@@ -57,7 +58,7 @@ public class Order {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+	String DeployParam;
 	public Order(double price, String currency, String method, String intent, String description) {
 		super();
 		this.price = price;
@@ -65,5 +66,6 @@ public class Order {
 		this.method = method;
 		this.intent = intent;
 		this.description = description;
+		DeployParam="";
 	}
 }

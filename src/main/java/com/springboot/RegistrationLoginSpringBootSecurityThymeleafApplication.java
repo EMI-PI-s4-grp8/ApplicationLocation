@@ -1,6 +1,7 @@
 package com.springboot;
 
 
+import com.springboot.model.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.SpringApplication;
@@ -159,6 +160,34 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication {
         				"             <img class=\"img-thumbnail\" th:src=\"@{getPhoto(id=${logement.id})}\" /></svg>"+"</label>\r\n" + 
         		"          </div>\r\n"+
         		"</div>", true);
+
+		// hard coded a file path
+       // FileSystemResource file = new FileSystemResource(new File("‪C:/Users/Pc/Pictures/bane.PNG"));
+
+       // helper.addAttachment("bane.PNG", file);
+
+        javaMailSender.send(msg);
+
+    }
+	public void sendConfirmReser(Reservation reservation) throws MessagingException, IOException {
+
+        MimeMessage msg = javaMailSender.createMimeMessage();
+
+        // true = multipart message
+        MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+
+        helper.setTo("zakariabouaouda1@gmail.com");
+
+        helper.setSubject("Confirmation de reservation : ");
+
+        // default = text/plain
+        //helper.setText("Check attachment for image!");
+
+        // true = text/html
+        helper.setText("<h1>Félications! vous avez réservé un logement !</br>"
+        		+ "Vous etes maintenant un client dans Fintbat !"
+        		+ "</h1>");
+        		
 
 		// hard coded a file path
        // FileSystemResource file = new FileSystemResource(new File("‪C:/Users/Pc/Pictures/bane.PNG"));

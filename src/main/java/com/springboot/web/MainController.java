@@ -61,6 +61,14 @@ public class MainController {
 	private RecTraiteRepository recTraiteRepository;
 
 	
+
+	
+//	    @RequestMapping("/")
+//	    public String index() {
+//	        return "org";
+//	    }
+	
+	
 	  @Value("${x}") private String imageDir;
 	  
 	//repondre reclamation
@@ -206,7 +214,7 @@ public String supprimerRT(Long id) {
 	public String accueil() {
 		return "accueil";
 	}
-	@RequestMapping(value="/test")
+	@RequestMapping(value="/")
 	public String test(Model model,
 			@RequestParam(name="page",defaultValue="0")int p,
 			@RequestParam(name="size",defaultValue="3")int s,

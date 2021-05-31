@@ -64,13 +64,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     	                "/accueil**"
 
                         ,"/h2/**"
+                     
 
                         ,"test"
 
                         ,"/test/**"
-
+                         ,"/forgot-password/**"
+                        ,"/confirm-reset/**"
+                        ,"/reset-password/**"
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/register").permitAll()
+    			.antMatchers("/login").permitAll()
+    			.antMatchers("/confirm").permitAll()
 
                 .antMatchers("/index1/**","/homePRO/**","/form/**").hasRole("PROPRIETAIRE")
 
