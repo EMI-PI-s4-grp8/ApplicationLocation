@@ -39,8 +39,11 @@
         <a sec:authorize="isAnonymous()" th:href="@{/registration}">Register user
           <span
           class="glyphicon glyphicon-user"></span>
-        </a>
-      </span>           
+        </a><a href="/forgot-password">Forgot Password?</a>
+      </span>       
+      <span>
+      
+      </span>    
       <div class="row">
        <div class="col-xs-12">
         <div th:if="${param.error}"

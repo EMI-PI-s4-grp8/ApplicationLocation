@@ -64,6 +64,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     	                "/accueil**"
 
                         ,"/h2/**"
+                        ,"/forgot-password/**"
+                        ,"/confirm-reset/**"
+                        ,"/reset-password/**"
 
                         ,"test"
 
@@ -71,6 +74,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/register").permitAll()
+    			.antMatchers("/login").permitAll()
+    			.antMatchers("/confirm").permitAll()
 
                 .antMatchers("/index1/**","/homePRO/**","/form/**").hasRole("PROPRIETAIRE")
 
