@@ -7,6 +7,7 @@ import java.io.IOException;
 //import java.io.IOException;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -327,8 +328,8 @@ public String supprimerRT(Long id) {
 		
 	
 		@RequestMapping(value="/paiement",method=RequestMethod.POST)
-		public String save(Model model,Reservation reservation) {
-				
+		public String save(Model model,Reservation reservation) throws MessagingException, IOException {
+			registrationLoginSpringBootSecurityThymeleafApplication.sendConfirmReser(reservation);
 			reservationRepository.save(reservation);
 			return "home";//confirmation
 		}

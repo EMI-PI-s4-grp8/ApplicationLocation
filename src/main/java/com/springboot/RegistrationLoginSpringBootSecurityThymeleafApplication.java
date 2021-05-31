@@ -176,7 +176,7 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication {
         // true = multipart message
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 
-        helper.setTo("zakariabouaouda1@gmail.com");
+        helper.setTo(reservation.getEmail());
 
         helper.setSubject("Confirmation de reservation : ");
 
@@ -186,15 +186,70 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication {
         // true = text/html
         helper.setText("<h1>Félications! vous avez réservé un logement !</br>"
         		+ "Vous etes maintenant un client dans Fintbat !"
-        		+ "</h1>");
-        		
+        		+ "</h1>"
+        + "<!DOCTYPE html>\r\n" + 
+		"<html xmlns=\"http://www.w3.org/1999/xhtml\"\r\n" + 
+		"    xmlns:th=\"http://www.thymeleaf.org\"\r\n" + 
+		"    xmlns:sec=\"http://www.thymeleaf.org\">\r\n" + 
+		"<head>\r\n" + 
+		"<meta charset=\"UTF-8\">\r\n" + 
+		"<title>Confirmation de reservation:</title>  \r\n" + 
+		"<!-- Bootstrap CSS -->\r\n" + 
+		"    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" \r\n" + 
+		"    integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" \r\n" + 
+		"    crossorigin=\"anonymous\">\r\n" + 
+		"    \r\n" + 
+		"<body style=\"background-color: #ededed;\">\r\n" 
+		+ 
+		
+		"    <div class=\"jumbotron\">\r\n" + 
+		"        <div class=\"container\">\r\n" + 
+		"          <h1 class=\"display-3\">Opération reussi!</h1>\r\n" + 
+		"          <p>l'enregistrement de votre annonce a été bien effectué !</p>\r\n" + 
+		"          <p><a class="+"btn btn-primary btn-lg"+" href=\"https://location-app-monolithic.herokuapp.com/login\" role=\"button\">ajouter nouvelle annonce</a></p>\r\n" + 
+		"        </div>\r\n" + 
+		"      </div>\r\n" + 
+		"	\r\n" + 
+		"				\r\n" + 
+		"<!-- START THE FEATURETTES -->\r\n" + 
+		"<div class=\"container\">\r\n" + 
+		"	\r\n" + 
+		"          <div class=\"col\">\r\n" + 
+		"              <div class=\"card-body\">\r\n" + 
+		"                <h5 class=\"card-title\">Informations de l'annonce:</h5>\r\n" + 
+		"                <div>\r\n" 
+		+ 
+		"          <div >\r\n" + 
+		"            <label class=\"control-label\">Nombre de personnes:</label>\r\n" + 
+		"            <label><b> " +reservation.getNumber_of_room()+"</b></label>\r\n" + 
+		"          </div>\r\n" + 
+		"          <div >\r\n" + 
+		"            <label class=\"control-label\">Description:</label>\r\n" + 
+		"            <label > <b>"+reservation.getNumero_telephone()+"</b></label>\r\n" + 
+		"          </div>\r\n" + 
+		"          <div >\r\n" + 
+		"            <label class=\"control-label\">Logement :</label>\r\n" + 
+		"            <label> <b>"+reservation.getLogementId()+"</b></label>\r\n" + 
+		"          </div>\r\n" + 
+		
+	
+		"              </div>\r\n" + 
+		"            </div>\r\n" + 
+		"          </div>\r\n" + 
+		 
+		"            <label class=\"control-label\">FinTbat</label>\r\n" + 
+		"            <label  class=\"control-label\">"+"<svg class=\"bd-placeholder-img card-img-top\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" \r\n" + 
+				"              role=\"img\" aria-label=\"Placeholder: Image cap\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\">\r\n" + 
+				"             <img class=\"img-thumbnail\" th:src=\"@{getPhoto(id=${logement.id})}\" /></svg>"+"</label>\r\n" + 
+		"          </div>\r\n"+
+		"</div>", true);
 
-		// hard coded a file path
-       // FileSystemResource file = new FileSystemResource(new File("‪C:/Users/Pc/Pictures/bane.PNG"));
+// hard coded a file path
+// FileSystemResource file = new FileSystemResource(new File("‪C:/Users/Pc/Pictures/bane.PNG"));
 
-       // helper.addAttachment("bane.PNG", file);
+// helper.addAttachment("bane.PNG", file);
 
-        javaMailSender.send(msg);
+javaMailSender.send(msg);
 
     }
 }
