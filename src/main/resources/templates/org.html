@@ -31,10 +31,15 @@
 	href="../static/css/style1.css" th:href="@{/css/style1.css}"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-	<style>body {
+	<style>
+
 	label {
   /* Presentation */
   font-size: 48px
+  position: relative;
+  top: 10px;
+  size: 40px;
+  height: 40px;
 }
 
 
@@ -53,7 +58,7 @@ label input[type="checkbox"] {
 .custom-checkbox .glyphicon {
   color: gold;
   position: absolute;
-  top: 0.4em;
+top: 0.4em; 
   left: -1.25em;
   font-size: 0.75em;
 }
@@ -74,7 +79,7 @@ label input[type="checkbox"] {
 .custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
   opacity: 1;
 }
-}
+
 </style>
    </head>
 
@@ -215,8 +220,8 @@ label input[type="checkbox"] {
                     <a  th:href="@{/AffichageFavoris(id=${p.id})}">
                     <label for="id-of-input" class="custom-checkbox">
  					 <input type="checkbox" id="id-of-input"/>
-  						<i class="glyphicon glyphicon-star-empty"></i>
- 						 <i class="glyphicon glyphicon-star"></i>
+  						<i onclick="return alert('Logement supprimé de vos favoris')" class="glyphicon glyphicon-star-empty"></i>
+ 						 <i onclick="return alert('Logement ajouté dans vos favoris')" class="glyphicon glyphicon-star"></i>
   						
 					</label>
 

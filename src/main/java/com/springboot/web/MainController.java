@@ -55,6 +55,14 @@ public class MainController {
 	private FavorisRepository favorisRepository;
 
 	
+
+	
+//	    @RequestMapping("/")
+//	    public String index() {
+//	        return "org";
+//	    }
+	
+	
 	  @Value("${x}") private String imageDir;
 	  @GetMapping("test/dispo")
 		public String dispo(Model model,
@@ -154,7 +162,7 @@ return "redirect:indexR";
 	public String accueil() {
 		return "accueil";
 	}
-	@RequestMapping(value="/test")
+	@RequestMapping(value="/")
 	public String test(Model model,
 			@RequestParam(name="page",defaultValue="0")int p,
 			@RequestParam(name="size",defaultValue="3")int s,
