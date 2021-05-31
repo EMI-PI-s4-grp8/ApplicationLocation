@@ -1,0 +1,566 @@
+<!doctype html>
+                        <html>
+                            <head>
+                                <meta charset='utf-8'>
+                                <meta name='viewport' content='width=device-width, initial-scale=1'>
+                                <title>Paiement</title>
+                                <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+                                <link href='' rel='stylesheet'>
+                                <style>.container-fluid 
+                                <link rel="stylesheet" type="text/css"
+	href="../static/css/style1.css" th:href="@{/css/style1.css}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+                                {
+   background-image: linear-gradient(to right, #2b2e4b, #704875)
+}
+
+.heading {
+    font-size: 40px;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    padding-left: 20px
+}
+
+.card {
+    border-radius: 10px !important;
+    margin-top: 60px;
+    margin-bottom: 60px
+}
+
+.form-card {
+    margin-left: 20px;
+    margin-right: 20px
+}
+
+.form-card input,
+.form-card textarea {
+    padding: 10px 15px 5px 15px;
+    border: none;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: arial;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
+.form-card input:focus,
+.form-card textarea:focus {
+    -moz-box-shadow: 0px 0px 0px 1.5px skyblue !important;
+    -webkit-box-shadow: 0px 0px 0px 1.5px skyblue !important;
+    box-shadow: 0px 0px 0px 1.5px skyblue !important;
+    font-weight: bold;
+    border: 1px solid #304FFE;
+    outline-width: 0
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    overflow: hidden
+}
+
+.input-group input {
+    position: relative;
+    height: 80px;
+    margin-left: 1px;
+    margin-right: 1px;
+    border-radius: 6px;
+    padding-top: 30px;
+    padding-left: 25px
+}
+
+.input-group label {
+    position: absolute;
+    height: 24px;
+    background: none;
+    border-radius: 6px;
+    line-height: 48px;
+    font-size: 15px;
+    color: gray;
+    width: 100%;
+    font-weight: 100;
+    padding-left: 25px
+}
+
+input:focus+label {
+    color: #304FFE
+}
+
+.btn-pay {
+    background-color: #304FFE;
+    height: 60px;
+    color: #ffffff !important;
+    font-weight: bold
+}
+
+.btn-pay:hover {
+    background-color: #3F51B5
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+img {
+    border-radius: 5px
+}
+
+.radio-group {
+    position: relative;
+    margin-bottom: 25px
+}
+
+.radio {
+    display: inline-block;
+    border-radius: 6px;
+    box-sizing: border-box;
+    border: 2px solid lightgrey;
+    cursor: pointer;
+    margin: 12px 25px 12px 0px
+}
+
+.radio:hover {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2)
+}
+
+.radio.selected {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 155, 0.4);
+    border: 2px solid blue
+}
+
+.label-radio {
+    font-weight: bold;
+    color: #000000
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+
+* {
+  font-family: Open Sans;
+}
+
+section {
+  width: 100%;
+  display: inline-block;
+  background: #333;
+  height: 15vh;
+  text-align: center;
+  font-size: 2px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.footer-distributed{
+	background: #666;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #ffffff;
+	font: normal 36px 'Open Sans', cursive;
+	margin: 0;
+}
+
+.footer-distributed h3 span{
+	color:  lightseagreen;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+  font-weight:400;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+	color:  #222;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 35%;
+}
+
+.footer-distributed .footer-center i{
+	background-color:  #33383b;
+	color: #ffffff;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+	color: #ffffff;
+  font-weight:400;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	color:  lightseagreen;
+	text-decoration: none;;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight:300;
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+	width: 20%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #92999f;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
+}
+
+</style>
+                                <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+                                <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+                                <script type='text/javascript'>$(document).ready(function(){
+
+//For Card Number formatted input
+var cardNum = document.getElementById('cr_no');
+cardNum.onkeyup = function (e) {
+if (this.value == this.lastValue) return;
+var caretPosition = this.selectionStart;
+var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+var parts = [];
+
+for (var i = 0, len = sanitizedValue.length; i < len; i +=4) { parts.push(sanitizedValue.substring(i, i + 4)); } for (var i=caretPosition - 1; i>= 0; i--) {
+    var c = this.value[i];
+    if (c < '0' || c> '9') {
+        caretPosition--;
+        }
+        }
+        caretPosition += Math.floor(caretPosition / 4);
+
+        this.value = this.lastValue = parts.join('-');
+        this.selectionStart = this.selectionEnd = caretPosition;
+        }
+
+        //For Date formatted input
+        var expDate = document.getElementById('exp');
+        expDate.onkeyup = function (e) {
+        if (this.value == this.lastValue) return;
+        var caretPosition = this.selectionStart;
+        var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+        var parts = [];
+
+        for (var i = 0, len = sanitizedValue.length; i < len; i +=2) { parts.push(sanitizedValue.substring(i, i + 2)); } for (var i=caretPosition - 1; i>= 0; i--) {
+            var c = this.value[i];
+            if (c < '0' || c> '9') {
+                caretPosition--;
+                }
+                }
+                caretPosition += Math.floor(caretPosition / 2);
+
+                this.value = this.lastValue = parts.join('/');
+                this.selectionStart = this.selectionEnd = caretPosition;
+                }
+
+                // Radio button
+                $('.radio-group .radio').click(function(){
+                $(this).parent().parent().find('.radio').removeClass('selected');
+                $(this).addClass('selected');
+                });
+                })</script>
+                            </head>
+                            <body oncontextmenu='return false' class='snippet-body'>
+                            <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class=" col-lg-6 col-md-8">
+            <div class="card p-3">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h2 class="heading text-center">Procéder au paiement</h2>
+                    </div>
+                </div>
+                
+                <form  class="form-card" method="post"  action="/pay">
+                    <div class="row justify-content-center mb-4 radio-group">
+                        <div class="col-sm-3 col-5">
+                            <div class='radio selected mx-auto' data-value="dk"> <img class="fit-image" src="https://i.imgur.com/5TqiRQV.jpg" width="105px" height="55px"> </div>
+                        </div>
+                        <div class="col-sm-3 col-5">
+                            <div class='radio mx-auto' data-value="visa"> <img class="fit-image" src="https://i.imgur.com/OdxcctP.jpg" width="105px" height="55px"> </div>
+                        </div>
+                        <div class="col-sm-3 col-5">
+                            <div class='radio mx-auto' data-value="master"> <img class="fit-image" src="https://i.imgur.com/WIAP9Ku.jpg" width="105px" height="55px"> </div>
+                        </div>
+                        <div class="col-sm-3 col-5">
+                            <div class='radio mx-auto' data-value="paypal"> <img class="fit-image" src="https://i.imgur.com/cMk1MtK.jpg" width="105px" height="55px"> </div>
+                        </div> <br>
+                    </div>
+                    <div class="row justify-content-center form-group">
+                        <div class="col-12 px-auto">
+                            <div class="custom-control custom-radio custom-control-inline"> <input id="customRadioInline1" type="radio" name="customRadioInline1" class="custom-control-input" checked="true"> <label for="customRadioInline1" class="custom-control-label label-radio">Private</label> </div>
+                            <div class="custom-control custom-radio custom-control-inline"> <input id="customRadioInline2" type="radio" name="customRadioInline1" class="custom-control-input"> <label for="customRadioInline2" class="custom-control-label label-radio">Business</label> </div>
+                        </div>
+                    </div>
+          
+                    
+                    
+                     <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="row">
+                                
+                                 <div class="col-6">
+                            <div class="input-group"> <input type="text" name="price" value="6000"> <label>Montant a payer</label> </div>
+                        		</div>
+                                
+                                <div class="col-6">
+                                <div class="form-group"> 
+                                <span class="form-label">Select intent</span> 
+                                <select class="form-control" required name="intent">
+                                		 <option value="" selected hidden>Intention</option>
+                                		 <option>SALE</option>
+                                         <option>AUTHORIZE</option>
+                                         <option>ORDER</option>
+                                         <option>NONE</option>
+                                    </select> <span class="select-arrow"></span> </div>
+                                   
+                                </div>
+                                
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="row">
+                            
+                             	<div class="col-6">
+                                    <div class="input-group"> <input type="text" name="method" placeholder="Entrer votre moyen de paiement" minlength="3" maxlength="10" required> <label>Méthode de paiement</label> </div>
+                                </div>
+                                
+                                
+                                <div class="col-6">
+                                <div class="form-group"> 
+                                <span class="form-label">Select devise</span> 
+                                <select class="form-control" required name="currency">
+                                		 <option value="" selected hidden>Devise</option>
+                                		 <option>USD</option>
+                                         <option>EUR</option>
+                                         <option>MAD</option>
+                                    </select> <span class="select-arrow"></span> </div>
+                                   
+                                </div>
+                                
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="input-group"> <input type="text"  name="description" placeholder="Description du paiement" minlength="0" maxlength="19" > <label>Description du paiement</label> </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                    
+                        <div class="col-md-12"> 
+                        <input type="submit" value="Continuer le checkout" class="btn btn-pay placeicon"> 
+                       </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------- Footer ------------>
+ <section>FinTbat</section>
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Fin<span>Tbat</span></h3>
+
+				<p class="footer-links">
+					<a href="#" class="link-1">Acceuil</a>
+					
+					<a href="#">Chercher</a>
+				
+					<a href="#">Devenir Hote</a>
+				
+					<a href="#">About</a>
+					
+					<a href="#">Avis</a>
+					
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">FinTbat ©️ 2021</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>FinTbat</span>Maroc, Rabat, Emi</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>0612345678</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:fintbat@gmail.com">fintbat@gmail.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Fintbat est un site web de location de logement, qui vous permet de trouver le logement de vos reves, ainsi vous pouvez 
+					aussi devenir un hote et lancer votre annonce de logement dans FinTbat !!
+				</p>
+
+				<div class="footer-icons">
+<div class="col item social">
+<a href="#"><i class="icon ion-social-facebook"></i></a>
+<a href="#"><i class="icon ion-social-twitter"></i></a>
+<a href="#"><i class="icon ion-social-snapchat"></i></a>
+<a href="#"><i class="icon ion-social-instagram"></i></a>
+</div>
+					
+
+				</div>
+
+			</div>
+
+		</footer></div>
+                            </body>
+                        </html>
