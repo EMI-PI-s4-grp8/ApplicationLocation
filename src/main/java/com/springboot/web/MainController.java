@@ -103,7 +103,7 @@ public class MainController {
 			}
 		
 	  
-	  @GetMapping("test/dispo")
+	  @GetMapping("/dispo")
 		public String dispo(Model model,
 				
 					@RequestParam(name="page",defaultValue="0")int p,
