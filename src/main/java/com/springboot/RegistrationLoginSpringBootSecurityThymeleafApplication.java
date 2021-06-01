@@ -66,8 +66,8 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication {
 	public void sendConfirmA(Logement logement) {
 		
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("zakariabouaouda1@gmail.com");
-        
+        msg.setTo("principal.username");
+        System.out.println("principal.username");
         msg.setSubject(logement.getIntitule());
         String htmlCode="<h1>Confirmation de votre annonce de logement</h1>"
         		+ "<p>merci pour votre confiance</p>";
