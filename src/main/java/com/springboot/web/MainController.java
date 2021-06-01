@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +29,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+import javax.servlet.ServletContext;
 
 import com.springboot.model.Experience;
 import com.springboot.model.Favoris;
@@ -41,7 +47,9 @@ import com.springboot.repository.ReservationRepository;
 import com.springboot.repository.MailRepository;
 import com.springboot.repository.RecTraiteRepository;
 import com.springboot.model.Mail;
+import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.springboot.RegistrationLoginSpringBootSecurityThymeleafApplication;
 @Controller
 public class MainController {
@@ -62,8 +70,8 @@ public class MainController {
 	private RecTraiteRepository recTraiteRepository;
 
 	
-
-	
+	TemplateEngine templateEngine;
+	ServletContext servletContext;
 //	    @RequestMapping("/")
 //	    public String index() {
 //	        return "org";
@@ -95,14 +103,66 @@ public class MainController {
 			  registrationLoginSpringBootSecurityThymeleafApplication.sendEmail(mail);
 			  return "redirect:indexR"; 
 			}
-		@RequestMapping(value="/pdf",method=RequestMethod.POST)
-		public String pdf() throws IOException{
-
-			HtmlConverter.convertToPdf(new File("./confirmation.html"),new File("confirmation.pdf"));
-			return "confirmation";
-			}
+//		@RequestMapping(value="/pdf",method=RequestMethod.POST)
+//		public String pdf(Model model) throws IOException{
+//
+//			HtmlConverter.convertToPdf(new File(""
+//					+ "C:\\Users\\Pc\\Desktop\\ApplicationLocation\\src\\main\\resources\\templates\\confirmation.html"),
+//					new File("confirmation.pdf"));
+//			return "redirect:confirmation";
+//			}
 		
-	  
+//		@RequestMapping(path = "/")
+//	    public String getOrderPage(Model model) throws IOException {
+////	        Order order = OrderHelper.getOrder()
+////	        model.addAttribute("orderEntry", order);
+////	        return "order";
+//			Logement logement=new Logement();
+//			 model.addAttribute("logement", logement);
+//			        return "logement";
+//	    }
+		@RequestMapping(path = "/pdf")
+	    public ResponseEntity<?> getPDF(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+	        /* Do Business Logic*/
+
+//	        //Order order = OrderHelper.getOrder();
+//			Logement logement=new Logement();
+//
+//	        /* Create HTML using Thymeleaf template Engine */
+//
+//        WebContext context = new WebContext(request, response, servletContext);
+//        context.setVariable("logement", logement);
+//	        String orderHtml = templateEngine.process("confirmation", context);
+
+	        /* Setup Source and target I/O streams */
+
+	        ByteArrayOutputStream target = new ByteArrayOutputStream();
+
+	        /*Setup converter properties. */
+	        ConverterProperties converterProperties = new ConverterProperties();
+	        converterProperties.setBaseUri("http://localhost:8084");
+
+	        /* Call convert method */
+	       // HtmlConverter.convertToPdf(orderHtml, target, converterProperties);  
+//	        HtmlConverter.convertToPdf(new File(
+//	        		"C:\\Users\\Pc\\Desktop\\ApplicationLocation\\src\\main\\resources\\templates\\confirmation.html"),
+////					new File("confirmation.pdf"));
+	        HtmlConverter.convertToPdf(new File(
+	        		"C:\\Users\\Pc\\Desktop\\ApplicationLocation\\src\\main\\resources\\templates\\confirmation.html"),
+					new File("confirmation.pdf"));
+	        //HtmlConverter.convertToPdf(orderHtml,target, converterProperties);
+	        /* extract output as bytes */
+	        byte[] bytes = target.toByteArray();
+
+
+	        /* Send the response as downloadable PDF */
+
+	        return ResponseEntity.ok()
+	                .contentType(MediaType.APPLICATION_PDF)
+	                .body(bytes);
+
+	    }
 	  @GetMapping("test/dispo")
 		public String dispo(Model model,
 				
@@ -265,7 +325,7 @@ public String supprimerRT(Long id) {
 		if(!(file.isEmpty())) {
 			logement.setImage(file.getOriginalFilename());
 			logementRepository.save(logement);
-			registrationLoginSpringBootSecurityThymeleafApplication.sendConfirm(logement);
+			//registrationLoginSpringBootSecurityThymeleafApplication.sendConfirm(logement);
 			 file.transferTo(new File(imageDir+logement.getId())); 
 						}
 		
