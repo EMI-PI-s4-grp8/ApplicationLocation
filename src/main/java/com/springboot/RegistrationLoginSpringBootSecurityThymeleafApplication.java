@@ -206,7 +206,7 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication {
 		"        <div class=\"container\">\r\n" + 
 		"          <h1 class=\"display-3\">Opération reussi!</h1>\r\n" + 
 		"          <p>l'enregistrement de votre annonce a été bien effectué !</p>\r\n" + 
-		"          <p><a class="+"btn btn-primary btn-lg"+" href=\"https://location-app-monolithic.herokuapp.com/login\" role=\"button\">ajouter nouvelle annonce</a></p>\r\n" + 
+		"          <p><a class="+"btn btn-primary btn-lg"+" href=\"https://location-app-monolithic.herokuapp.com/login\" role=\"button\">Retourner à FinTbat</a></p>\r\n" + 
 		"        </div>\r\n" + 
 		"      </div>\r\n" + 
 		"	\r\n" + 
@@ -216,32 +216,33 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication {
 		"	\r\n" + 
 		"          <div class=\"col\">\r\n" + 
 		"              <div class=\"card-body\">\r\n" + 
-		"                <h5 class=\"card-title\">Informations de l'annonce:</h5>\r\n" + 
+		"                <h5 class=\"card-title\">Informations de Reservation:</h5>\r\n" + 
 		"                <div>\r\n" 
 		+ 
 		"          <div >\r\n" + 
-		"            <label class=\"control-label\">Nombre de personnes:</label>\r\n" + 
+		"            <label >Nombre de personnes:</label>" + 
 		"            <label><b> " +reservation.getNumber_of_room()+"</b></label>\r\n" + 
 		"          </div>\r\n" + 
 		"          <div >\r\n" + 
-		"            <label class=\"control-label\">Description:</label>\r\n" + 
+		"            <label >Tel :</label>\r\n" + 
 		"            <label > <b>"+reservation.getNumero_telephone()+"</b></label>\r\n" + 
 		"          </div>\r\n" + 
 		"          <div >\r\n" + 
-		"            <label class=\"control-label\">Logement :</label>\r\n" + 
-		"            <label> <b>"+reservation.getLogementId()+"</b></label>\r\n" + 
-		"          </div>\r\n" + 
-		
+"            <label >Date arrivée :</label>\r\n" + 
+"            <label> <b>"+reservation.getArrival_date()+"</b></label>\r\n" + 
+"          </div>\r\n" + 
+
+"          <div >\r\n" + 
+"            <label >Date départ :</label>\r\n" + 
+"            <label> <b>"+reservation.getDeparture_date()+"</b></label>\r\n" + 
+"          </div>\r\n" + 
 	
 		"              </div>\r\n" + 
 		"            </div>\r\n" + 
 		"          </div>\r\n" + 
 		 
-		"            <label class=\"control-label\">FinTbat</label>\r\n" + 
-		"            <label  class=\"control-label\">"+"<svg class=\"bd-placeholder-img card-img-top\" width=\"100%\" height=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" \r\n" + 
-				"              role=\"img\" aria-label=\"Placeholder: Image cap\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\">\r\n" + 
-				"             <img class=\"img-thumbnail\" th:src=\"@{getPhoto(id=${logement.id})}\" /></svg>"+"</label>\r\n" + 
-		"          </div>\r\n"+
+		"            <label >FinTbat</label>\r\n" + 
+		
 		"</div>", true);
 
 // hard coded a file path
