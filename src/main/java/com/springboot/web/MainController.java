@@ -210,7 +210,6 @@ public String supprimerRT(Long id) {
 }	
 
 	
-	///test
 	@GetMapping("/accueil")
 	public String accueil() {
 		return "accueil";
@@ -240,18 +239,18 @@ public String supprimerRT(Long id) {
 		}
 		
 	}
-	@RequestMapping(value="/test/log",method=RequestMethod.GET)
+	@RequestMapping(value="/log",method=RequestMethod.GET)
 	public String formtest(Model model) {
 		model.addAttribute("reservation", new Reservation());
 		return "log";
 	}
 
 	/*
-	 * @GetMapping("/test") public String test(Model model) {
+	 * @GetMapping("/") public String test(Model model) {
 	 * 
 	 * model.addAttribute("reservation", new Reservation()); return "index"; }
 	 */
-	///test
+
 	@RequestMapping(value="/form",method=RequestMethod.GET)
 	public String formLogement(Model model) {
 		model.addAttribute("logement", new Logement());
@@ -406,7 +405,7 @@ public String supprimerRT(Long id) {
 		  
 	
 }
-//		  @RequestMapping(value="/test",method=RequestMethod.GET)
+//		  @RequestMapping(value="/",method=RequestMethod.GET)
 //			public String formReservation(Model model,Long id) {
 //				Logement logement=logementRepository.findById(id).get();
 //				model.addAttribute("logement", new Logement());
@@ -416,7 +415,7 @@ public String supprimerRT(Long id) {
 //			}
 //			
 //		
-//			@RequestMapping(value="/test",method=RequestMethod.POST)
+//			@RequestMapping(value="/",method=RequestMethod.POST)
 //			public String save(Model model,Favoris favoris) {
 //					
 //				reservationRepository.save(favoris);
