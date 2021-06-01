@@ -22,9 +22,11 @@ public class Reclamation {
 	@NotEmpty
 	@Size(min=5,max=50)
 	private String objet;
-	@NotEmpty
 	@Size(min=0,max=150)
 	private String message;
+	
+//	@Transient
+//    private boolean disabled = true;
 	
 	public Reclamation() {
 		super();

@@ -2,10 +2,14 @@ package com.springboot.web;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 //import java.io.FileNotFoundException;
 //import java.io.IOException;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
@@ -15,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,11 +29,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+import javax.servlet.ServletContext;
 
 import com.springboot.model.Experience;
 import com.springboot.model.Favoris;
 import com.springboot.model.Logement;
 import com.springboot.model.Reclamation;
+import com.springboot.model.ReclamationTraite;
 import com.springboot.model.Reservation;
 import com.springboot.repository.ExperienceRepository;
 import com.springboot.repository.FavorisRepository;
@@ -36,7 +45,11 @@ import com.springboot.repository.LogementRepository;
 import com.springboot.repository.ReclamationRepository;
 import com.springboot.repository.ReservationRepository;
 import com.springboot.repository.MailRepository;
+import com.springboot.repository.RecTraiteRepository;
 import com.springboot.model.Mail;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.springboot.RegistrationLoginSpringBootSecurityThymeleafApplication;
 @Controller
 public class MainController {
@@ -53,10 +66,12 @@ public class MainController {
 	private ReclamationRepository reclamationRepository;
 	@Autowired
 	private FavorisRepository favorisRepository;
+	@Autowired
+	private RecTraiteRepository recTraiteRepository;
 
 	
-
-	
+	TemplateEngine templateEngine;
+	ServletContext servletContext;
 //	    @RequestMapping("/")
 //	    public String index() {
 //	        return "org";
@@ -64,7 +79,92 @@ public class MainController {
 	
 	
 	  @Value("${x}") private String imageDir;
-	  @GetMapping("test/dispo")
+	  
+	//repondre reclamation
+	  @RequestMapping(value="/repondreR",method=RequestMethod.GET)
+		 public String FormRepondre(@Valid ReclamationTraite tr,@Valid Reclamation rec,Model model,Long id,String email,String objet,String message) {
+			 model.addAttribute("mail",new Mail(email,objet));
+			 recTraiteRepository.save(new ReclamationTraite(email,objet,message));
+			 supprimerR(id);
+			 //reclamationRepository.deleteById(id);
+			 
+		
+			
+		 return "mail";
+		 }
+			
+		@RequestMapping(value="/sendemail",method=RequestMethod.POST)
+		public String save(@Valid ReclamationTraite tr,@Valid Mail mail,BindingResult bindingResult) {
+			  if(bindingResult.hasErrors()) {
+				  return "mail"; }
+			  mailRepository.save(mail);
+			  //recTraiteRepository.save(tr);
+			 
+			  registrationLoginSpringBootSecurityThymeleafApplication.sendEmail(mail);
+			  return "redirect:indexR"; 
+			}
+//		@RequestMapping(value="/pdf",method=RequestMethod.POST)
+//		public String pdf(Model model) throws IOException{
+//
+//			HtmlConverter.convertToPdf(new File(""
+//					+ "C:\\Users\\Pc\\Desktop\\ApplicationLocation\\src\\main\\resources\\templates\\confirmation.html"),
+//					new File("confirmation.pdf"));
+//			return "redirect:confirmation";
+//			}
+		
+
+//		@RequestMapping(path = "/")
+//	    public String getOrderPage(Model model) throws IOException {
+////	        Order order = OrderHelper.getOrder()
+////	        model.addAttribute("orderEntry", order);
+////	        return "order";
+//			Logement logement=new Logement();
+//			 model.addAttribute("logement", logement);
+//			        return "logement";
+//	    }
+		@RequestMapping(path = "/pdf")
+	    public ResponseEntity<?> getPDF(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+	        /* Do Business Logic*/
+
+//	        //Order order = OrderHelper.getOrder();
+//			Logement logement=new Logement();
+//
+//	        /* Create HTML using Thymeleaf template Engine */
+//
+//        WebContext context = new WebContext(request, response, servletContext);
+//        context.setVariable("logement", logement);
+//	        String orderHtml = templateEngine.process("confirmation", context);
+
+	        /* Setup Source and target I/O streams */
+
+	        ByteArrayOutputStream target = new ByteArrayOutputStream();
+
+	        /*Setup converter properties. */
+	        ConverterProperties converterProperties = new ConverterProperties();
+	        converterProperties.setBaseUri("http://localhost:8084");
+
+	        /* Call convert method */
+	       // HtmlConverter.convertToPdf(orderHtml, target, converterProperties);  
+//	        HtmlConverter.convertToPdf(new File(
+//	        		"C:\\Users\\Pc\\Desktop\\ApplicationLocation\\src\\main\\resources\\templates\\confirmation.html"),
+////					new File("confirmation.pdf"));
+	        HtmlConverter.convertToPdf(new File(
+	        		"C:\\Users\\Pc\\Desktop\\ApplicationLocation\\src\\main\\resources\\templates\\confirmation.html"),
+					new File("confirmation.pdf"));
+	        //HtmlConverter.convertToPdf(orderHtml,target, converterProperties);
+	        /* extract output as bytes */
+	        byte[] bytes = target.toByteArray();
+
+
+	        /* Send the response as downloadable PDF */
+
+	        return ResponseEntity.ok()
+	                .contentType(MediaType.APPLICATION_PDF)
+	                .body(bytes);
+
+	    }
+
 		public String dispo(Model model,
 				
 					@RequestParam(name="page",defaultValue="0")int p,
@@ -105,21 +205,21 @@ public class MainController {
 		return "app";
 	}
 	
-	//repondre reclamation
-		@RequestMapping(value="/repondreR",method=RequestMethod.GET)
-		 public String FormRepondre(Model model,String email,String objet) {
-			 model.addAttribute("mail",new Mail(email,objet));
-		 return "mail";
-		 }
-			
-		@RequestMapping(value="/sendemail",method=RequestMethod.POST)
-		public String save(@Valid Mail mail,BindingResult bindingResult) {
-			  if(bindingResult.hasErrors()) {
-				  return "mail"; }
-			  mailRepository.save(mail);
-			  registrationLoginSpringBootSecurityThymeleafApplication.sendEmail(mail);
-			  return "redirect:indexR"; 
-			}	 
+//	//repondre reclamation
+//		@RequestMapping(value="/repondreR",method=RequestMethod.GET)
+//		 public String FormRepondre(Model model,String email,String objet) {
+//			 model.addAttribute("mail",new Mail(email,objet));
+//		 return "mail";
+//		 }
+//			
+//		@RequestMapping(value="/sendemail",method=RequestMethod.POST)
+//		public String save(@Valid Mail mail,BindingResult bindingResult) {
+//			  if(bindingResult.hasErrors()) {
+//				  return "mail"; }
+//			  mailRepository.save(mail);
+//			  registrationLoginSpringBootSecurityThymeleafApplication.sendEmail(mail);
+//			  return "redirect:indexR"; 
+//			}	 
 		
 //////////////////////reclamation
 @RequestMapping(value="/formR",method=RequestMethod.GET)
@@ -137,27 +237,40 @@ return "reclamation"; }
 
 @RequestMapping(value="/indexR")
 public String indexR(Model model,
-@RequestParam(name="page",defaultValue="0")int p,
-@RequestParam(name="size",defaultValue="30")int s
-) {
-
-Page<Reclamation> pageReclamations=reclamationRepository.findAll(PageRequest.of(p, s));
-model.addAttribute("listReclamations",pageReclamations.getContent());
-int[] pages=new int[pageReclamations.getTotalPages()];
-model.addAttribute("pages",pages);
-model.addAttribute("size",s);
-model.addAttribute("pageCourante",p);
-return "rechercheR";
-}
-
+		@RequestParam(name="page",defaultValue="0")int p,
+		@RequestParam(name="size",defaultValue="30")int s
+		) {
+	
+		Page<Reclamation> pageReclamations=reclamationRepository.findAll(PageRequest.of(p, s));
+		model.addAttribute("listReclamations",pageReclamations.getContent());
+		
+		//
+		List<ReclamationTraite> pageReclamationTraite=recTraiteRepository.chercherRT();
+		model.addAttribute("listReclamationTraite",pageReclamationTraite);
+//		int[] pageT=new int[pageReclamations.getTotalPages()];
+//		model.addAttribute("pages",pageT);
+//		model.addAttribute("size",s);
+//		model.addAttribute("pageCourante",p);
+		//List<ReclamationTraite> listRT=recTraiteRepository.chercherRT();
+		//model.addAttribute("listReclamationTraite",listRT);
+		int[] pages=new int[pageReclamations.getTotalPages()];
+		model.addAttribute("pages",pages);
+		model.addAttribute("size",s);
+		model.addAttribute("pageCourante",p);
+		return "rechercheR";
+		}
 @RequestMapping(value="/supprimerR")
 public String supprimerR(Long id) {
 reclamationRepository.deleteById(id);
 return "redirect:indexR";
 }
+@RequestMapping(value="/supprimerRT")
+public String supprimerRT(Long id) {
+	recTraiteRepository.deleteById(id);
+	return "redirect:indexR";
+}	
 
 	
-	///test
 	@GetMapping("/accueil")
 	public String accueil() {
 		return "accueil";
@@ -187,18 +300,18 @@ return "redirect:indexR";
 		}
 		
 	}
-	@RequestMapping(value="/test/log",method=RequestMethod.GET)
+	@RequestMapping(value="/log",method=RequestMethod.GET)
 	public String formtest(Model model) {
 		model.addAttribute("reservation", new Reservation());
 		return "log";
 	}
 
 	/*
-	 * @GetMapping("/test") public String test(Model model) {
+	 * @GetMapping("/") public String test(Model model) {
 	 * 
 	 * model.addAttribute("reservation", new Reservation()); return "index"; }
 	 */
-	///test
+
 	@RequestMapping(value="/form",method=RequestMethod.GET)
 	public String formLogement(Model model) {
 		model.addAttribute("logement", new Logement());
@@ -213,6 +326,7 @@ return "redirect:indexR";
 		if(!(file.isEmpty())) {
 			logement.setImage(file.getOriginalFilename());
 			logementRepository.save(logement);
+			registrationLoginSpringBootSecurityThymeleafApplication.sendConfirm(logement);
 			 file.transferTo(new File(imageDir+logement.getId())); 
 						}
 		
@@ -274,8 +388,8 @@ return "redirect:indexR";
 		
 	
 		@RequestMapping(value="/paiement",method=RequestMethod.POST)
-		public String save(Model model,Reservation reservation) {
-				
+		public String save(Model model,Reservation reservation) throws MessagingException, IOException {
+			registrationLoginSpringBootSecurityThymeleafApplication.sendConfirmReser(reservation);
 			reservationRepository.save(reservation);
 			return "home";//confirmation
 		}
@@ -352,7 +466,7 @@ return "redirect:indexR";
 		  
 	
 }
-//		  @RequestMapping(value="/test",method=RequestMethod.GET)
+//		  @RequestMapping(value="/",method=RequestMethod.GET)
 //			public String formReservation(Model model,Long id) {
 //				Logement logement=logementRepository.findById(id).get();
 //				model.addAttribute("logement", new Logement());
@@ -362,7 +476,7 @@ return "redirect:indexR";
 //			}
 //			
 //		
-//			@RequestMapping(value="/test",method=RequestMethod.POST)
+//			@RequestMapping(value="/",method=RequestMethod.POST)
 //			public String save(Model model,Favoris favoris) {
 //					
 //				reservationRepository.save(favoris);

@@ -59,7 +59,7 @@
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between " style="font-family: Georgia, serif;font-weight: bold;font-size:25">
          
-<a class="flex-sm-fill text-sm-center nav-link active" href="/test">Accueil</a>
+<a class="flex-sm-fill text-sm-center nav-link active" href="/">Accueil</a>
   <a class="flex-sm-fill text-sm-center nav-link" href="/indexExp">Expérience</a>
   <a hidden class="flex-sm-fill text-sm-center nav-link  " href="/index1">Héberger des voyageurs</a>
   <a class="flex-sm-fill text-sm-center nav-link " href="/index1">Devenez Hôte</a>
@@ -75,7 +75,7 @@
   <a class="dropdown-item" hidden href="/logout"> Deconnection </a>
     <a class="dropdown-item" href="/login">Connexion</a>
     <a class="dropdown-item" href="/registration">Inscription</a>
-    <a class="dropdown-item" href="#">Aide</a>
+    <a th:href="@{/formR}">Contacter Nous</a>
   </div>
 </div>
         </div>
@@ -86,7 +86,9 @@
         <div class="container">
           <h1 class="display-3">Opération reussi!</h1>
           <p>l'enregistrement de votre annonce a été bien effectué !</p>
-          <p><a class="btn btn-primary btn-lg" href="form" role="button">ajouter nouvelle annonce</a></p>
+          <p><a class="btn btn-primary btn-lg" href="form" role="button">ajouter nouvelle annonce</a>
+          <a class="btn btn-primary btn-lg" th:href="pdf" role="button">Export to PDF</a>
+          </p>
         </div>
       </div>
 	

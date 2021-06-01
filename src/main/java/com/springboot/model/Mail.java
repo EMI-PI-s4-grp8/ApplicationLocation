@@ -49,10 +49,7 @@ public class Mail {
 	public Mail(String email,String obje) {
 		super();
 		this.email = email;
-		if(obje!=null)
-			this.objet= "Réponse de votre reclamation:"+ obje;
-		else
-			this.objet="";
+		this.objet= "Réponse de votre reclamation:"+ obje;
 		
 	}
 	public Mail(String email, String objet, String text) {

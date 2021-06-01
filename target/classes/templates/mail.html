@@ -1,6 +1,8 @@
-﻿<!doctype html>
-                        <html>
-                            <head>
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+<head>
                                 <meta charset='utf-8'>
                                 <meta name='viewport' content='width=device-width, initial-scale=1'>
                                 <title>Reclamation</title>
@@ -463,7 +465,7 @@ section {
                                               </a>
                                       
                                            
-                                       <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="/test">Accueil</a>
+                                       <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="/">Accueil</a>
                                 <a class="flex-sm-fill text-sm-center nav-link itemessss" href="#">Expérience</a>
                                 <!-- <a class="flex-sm-fill text-sm-center nav-link  " href="#">Héberger des voyageurs</a> -->
                                  <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/AffichageFavoris">Mes Favoris</a>
@@ -481,48 +483,47 @@ section {
                                       </div>
                                     </div>
                                   </header>
-                            <div id="booking" class="section">
-    <div class="section-center">
-        <div class="container">
-            <div class="row">
-                <div class="booking-form">
-                    <div class="form-header">
-                        <h1>Répondre à la Reclamation</h1>
-                    </div>
-                    <form th:action="@{sendemail}" method="post">
-                        
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group"> <input class="form-control" type="email" name="email"  th:value="${mail.email}" placeholder="Entrer ton Email"> <span class="form-label">Email</span> </div>
-                            </div>
-                            
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group"> <input class="form-control" type="text" name="objet"
-             th:value="${mail.objet}" placeholder="Objet"> <span class="form-label" style="	color:  lightseagreen;">Objet</span> </div>
-                            </div>
-                        </div>
-                       
-                        <!-- <div class="row"> -->
-                            <!-- <div class="col-md-12"> -->
-                                <div class="form-group"> <textarea class="form-control" rows="3" type="text" name="message" 
-             th:value="${mail.text}" placeholder="Message"></textarea> <span class="form-label" style="	color:  lightseagreen;">Message</span> </div>
-                            <!-- </div> -->
-                        <!-- </div>  -->
+<body style="background-color: #ededed;">
+	
+	<div class="container-fluid" style="margin-top: 30px;">
 
-
-                       
-                        <div class="form-btn"> <button class="submit-btn" style="	background-color:  lightseagreen;">Envoyer</button> </div>
-                    </form>
-                </div>
+		<div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+			  
+				<h3 class="form-signin-heading">Repondre par Mail à la reclamation:</h3>
+       <div class="panel-body">
+         <form th:action="@{sendemail}" method="post" >
+         	
+           <div class="form-group">
+             <label class="control-label">Email</label>
+             <input class="form-control" type="text" name="email"
+             th:value="${mail.email}"  placeholder="name@example.com">
+             
+             
+           </div>
+           <div class="form-group">
+             <label class="control-label">Objet:</label>
+             <input class="form-control" type="text" name="objet"
+             th:value="${mail.objet}">
+             
+        	</div>
+        	<div class="form-group">
+             <label class="control-label">Message:</label>
+             
+             <textarea class="form-control"  rows="3" type="text" name="text"
+             th:value="${mail.text}"></textarea>
+           
             </div>
-        </div>
-    </div>
-</div>
-
+           
+           <div>
+             <button type="submit" onclick="return confirm('Etes vous sure?')" class="btn btn-primary">Envoyer le Mail</button>
+             <a onclick="return confirm('voulez vous vraiment annuler?')"th:href="@{indexR} " class="btn btn-outline-danger">annuler</a>
+           </div>
+         </form>
+       </div>
+     </div>
+  </div>
+</body>
 <!----------- Footer ------------>
 <section>FinTbat</section>
 <footer class="footer-distributed">
@@ -589,6 +590,6 @@ section {
 
 			</div>
 
-		</footer></div>
+		</footer>
                             </body>
                         </html>

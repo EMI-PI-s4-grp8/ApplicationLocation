@@ -86,31 +86,84 @@ top: 0.4em;
    
      <body>
      <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+     <style>
+     .no-padding{
+  padding: 0 !important;
+}
+
+.circle-login{
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  border-radius: 50%;
+  background: url("https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png");
+  background-size: cover;
+  padding: 0;
+  margin: 5px 0 0 5px;
+}
+
+.navbar-default #circle>.open>a, .navbar-default #circle>.open>a:focus, .navbar-default #circle>.open>a:hover{
+  background-color: transparent;
+}
+     
+     </style>
+     
+     
+     
+     
+     
+     
+     <header>
+      
       <div class="navbar navbar-dark bg-dark box-shadow" style="background-color: #666666 !important;" >
         <div class="container d-flex justify-content-between " style=" font-family: Georgia, serif;font-weight: bold;font-size:25">
-          <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="test"><img src='https://i.ibb.co/QbG8ZDw/Fintbat2.png' width='280px' height='90px'/></a>
-         <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="test">Accueil</a>
+          <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="/"><img src='https://i.ibb.co/QbG8ZDw/Fintbat2.png' width='280px' height='90px'/></a>
+         <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="/">Accueil</a>
+  <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/indexExp">Expérience</a>
+  <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/index1">Devenez Hôte</a>
+         
+          
+          
+          <div class="dropdown">
+          <a href="#" class="dropdown-toggle no-padding" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><div class="circle-login"></div></a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  
+    <a class="dropdown-item" href="/login">Connexion</a>
+    <a class="dropdown-item" href="/registration">Inscription</a>
+     <a class="flex-sm-fill text-sm-center nav-link " href="/AffichageFavoris">Mes Favoris</a>
+    <a class="dropdown-item" href="#">Aide</a>
+    <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/homePRO">Hôte?</a>
+  </div>
+</div>
+        </div>
+      </div>
+    </header>
+     
+
+
+<!--<nav>
+      <div class="navbar navbar-dark bg-dark box-shadow" style="background-color: #666666 !important;" >
+        <div class="container d-flex justify-content-between " style=" font-family: Georgia, serif;font-weight: bold;font-size:25">
+          <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="/"><img src='https://i.ibb.co/QbG8ZDw/Fintbat2.png' width='280px' height='90px'/></a>
+         <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="/">Accueil</a>
   <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/indexExp">Expérience</a>
   <a class="flex-sm-fill text-sm-center nav-link  itemessss" href="/index1">Héberger des voyageurs</a>
   <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/homePRO">Hôte</a>
+        
+        
+        <div class="container-fluid navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+
+        
+        
          <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle itemessss" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Compte
@@ -122,9 +175,13 @@ top: 0.4em;
     <a class="dropdown-item" href="#">Aide</a>
   </div>
 </div>
+
+
+
         </div>
       </div>
-    </header>
+      </nav>
+    </header>-->
 
   <div class="images">
   <div id="myCarousel" class="carousel slide" data-ride="carousel" data-wrap="false">
@@ -237,7 +294,7 @@ top: 0.4em;
 
     
 
-    <!----------- Footer ------------>
+    <!--- Footer -->
  <section>FinTbat</section>
 <footer class="footer-distributed">
 

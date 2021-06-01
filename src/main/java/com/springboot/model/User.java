@@ -29,10 +29,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(nullable = false)
-    @NotEmpty()
+//    @Column(nullable = false)
+//    @NotEmpty()
+    @Column(name = "first_name")
     private String firstName;
 	
+    @Column(name = "last_name")
 	private String lastName;
     
 
@@ -46,6 +48,19 @@ public class User {
     @Size(min = 4)
     private String password;
 
+	//New changes
+	private boolean isEnabled;
+	
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+    
+    
+    
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
         name = "users_roles",

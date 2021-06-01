@@ -56,21 +56,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                         ,"/assets/**"
 
                         ,"/h2/**","/supprimerR/**","/save/**","/getPhoto/**","/affichageLog/**","/edit/**","/formReserv/**"
-                        ,"/test/**","/paiement/**","/Confirm/**","/AffichageReserv/**","/deleteReserv/**","/editReserv/**","/delete/**"
+                        ,"/paiement/**","/Confirm/**","/AffichageReserv/**","/deleteReserv/**","/editReserv/**","/delete/**"
                         ,"/js/**","/AffichageFavoris/**","/deleteFavoris/**","/formExp/**","/saveExp/**","/indexExp/**","/supprimerExp/**"
     	               , "/css/**","/supprimerttExp/**","/modifierExp/**"
-    	                ,"/test/**",
+    	                ,"/",
     	                "/img/**",
     	                "/accueil**"
 
                         ,"/h2/**"
+                     
 
-                        ,"test"
-
-                        ,"/test/**"
-
+                         ,"/forgot-password/**"
+                        ,"/confirm-reset/**"
+                        ,"/reset-password/**"
                         ,"/registration**").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/register").permitAll()
+    			.antMatchers("/login").permitAll()
+    			.antMatchers("/confirm").permitAll()
 
                 .antMatchers("/index1/**","/homePRO/**","/form/**").hasRole("PROPRIETAIRE")
 
@@ -80,7 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/test")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()

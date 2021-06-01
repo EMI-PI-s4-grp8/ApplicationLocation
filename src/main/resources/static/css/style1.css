@@ -196,3 +196,30 @@ section {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+.no-padding{
+  padding: 0 !important;
+}
+
+.circle-login{
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  border-radius: 50%;
+  background: url("https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png");
+  background-size: cover;
+  padding: 0;
+  margin: 5px 0 0 5px;
+}
+
+.navbar-default #circle>.open>a, .navbar-default #circle>.open>a:focus, .navbar-default #circle>.open>a:hover{
+  background-color: transparent;
+}
