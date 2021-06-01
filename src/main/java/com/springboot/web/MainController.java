@@ -111,17 +111,7 @@ public class MainController {
 //					new File("confirmation.pdf"));
 //			return "redirect:confirmation";
 //			}
-<<<<<<< HEAD
-		
 
-=======
-<<<<<<< HEAD
-		
-
-=======
-	
->>>>>>> branch 'main' of https://github.com/EMI-PI-s4-grp8/ApplicationLocation.git
->>>>>>> branch 'main' of https://github.com/EMI-PI-s4-grp8/ApplicationLocation.git
 //		@RequestMapping(path = "/")
 //	    public String getOrderPage(Model model) throws IOException {
 ////	        Order order = OrderHelper.getOrder()
@@ -173,15 +163,7 @@ public class MainController {
 	                .body(bytes);
 
 	    }
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
-	 
->>>>>>> branch 'main' of https://github.com/EMI-PI-s4-grp8/ApplicationLocation.git
->>>>>>> branch 'main' of https://github.com/EMI-PI-s4-grp8/ApplicationLocation.git
 		public String dispo(Model model,
 				
 					@RequestParam(name="page",defaultValue="0")int p,
