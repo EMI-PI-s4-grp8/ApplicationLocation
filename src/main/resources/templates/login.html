@@ -5,13 +5,23 @@
  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
  layout:decorator="layout">
 <head>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+		
+		
+		
+		
 <title>Log in</title>
 </head>
 <body>
  <div layout:fragment="content">
   <div class="panel col-md-5">
-   <div class="panel panel-primary">
-    <div class="panel-heading">Login Form</div>
+   <div class="panel panel-primary" style="color:lightslategray">
+    <div class="panel-heading" style="background-color: lightgray;">Login Form</div>
     <div class="panel-body">
      <form action="home" th:action="@{/login}" method="post">
       <div class="form-group has-feedback">
@@ -31,25 +41,31 @@
         </div>
       <div class="row">
        <div class="form-group col-xs-offset-8 col-xs-4">
-        <button type="submit" class="btn btn-primary btn-block btn-flat"
-         th:text="#{label.login}">LogIn</button>
+        <button type="submit" class="btn btn-secondary btn-block btn-flat"
+        style="background-color: slategray; color:cornflowerblue;"
+         >  Log In</button>
        </div>
       </div>
       <span class="form-group col-xs-offset-4 col-xs-4">
-        <a class="glyphicon glyphicon-user" href="/registration">Register user
+       
+              <button type="button" class="btn btn-light">
+               <a class="glyphicon glyphicon-user" href="/registration"> Register user
         </a>
-        
+              </button>  
       </span>       
       <span>
-      </a><a href="/forgot-password">Forgot Password?</a>
-      </span>    
+      <button type="button" class="btn btn-info"
+      style="background-color: #c9ced6;"
+      ><a href="/forgot-password">Forgot Password?</a></button>
+      
+      </span> 
+ 
       <div class="row">
        <div class="col-xs-12">
         <div th:if="${param.error}"
          class="alert alert-danger alert-dismissable">
          <p>
-          <i class="icon fa fa-ban"></i> <span
-           th:text="#{error.login_failed}">Invalid Email and
+          <i class="icon fa fa-ban"></i> <span>Invalid Email and
            Password.</span>
          </p>
         </div>
@@ -57,7 +73,7 @@
          class="alert alert-info alert-dismissable">
          <p>
           <i class="icon fa fa-info"></i> <span
-           th:text="#{info.logout_success}">You have been logged
+           >You have been logged
            out.</span>
          </p>
         </div>

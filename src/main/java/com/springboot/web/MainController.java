@@ -112,6 +112,7 @@ public class MainController {
 //			return "redirect:confirmation";
 //			}
 		
+<<<<<<< HEAD
 //		@RequestMapping(path = "/")
 //	    public String getOrderPage(Model model) throws IOException {
 ////	        Order order = OrderHelper.getOrder()
@@ -164,6 +165,10 @@ public class MainController {
 
 	    }
 	  @GetMapping("test/dispo")
+=======
+	  
+	  @GetMapping("/dispo")
+>>>>>>> branch 'main' of https://github.com/EMI-PI-s4-grp8/ApplicationLocation.git
 		public String dispo(Model model,
 				
 					@RequestParam(name="page",defaultValue="0")int p,
