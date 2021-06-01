@@ -46,8 +46,9 @@
   <link rel="stylesheet" type="text/css"
 	href="../static/css/style1.css" th:href="@{/css/style1.css}"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  
-</head>
+  <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+</head><body>
+
  <header>
       
       <div class="navbar navbar-dark bg-dark box-shadow" style="background-color: #666666 !important;" >
@@ -55,37 +56,50 @@
           <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="test"><img src='https://i.ibb.co/QbG8ZDw/Fintbat2.png' width='280px' height='90px'/></a>
          <a class="flex-sm-fill text-sm-center nav-link active itemessss" href="test">Accueil</a>
   <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/indexExp">Expérience</a>
-  <a class="flex-sm-fill text-sm-center nav-link  itemessss" href="/index1">Héberger des voyageurs</a>
-  <a class="flex-sm-fill text-sm-center nav-link itemessss" href="/index1">Devenez Hôte</a>
+  
+  <a  class="flex-sm-fill text-sm-center nav-link  itemessss" href="/form" >Ajouter une annonce de logement</a>
+  
+  
          <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle itemessss" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Compte
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/login">Connexion</a>
-    <a class="dropdown-item" href="/registration">Inscription</a>
-     <a class="flex-sm-fill text-sm-center nav-link " href="/AffichageFavoris">Mes Favoris</a>
-    <a class="dropdown-item" href="#">Aide</a>
+   <a th:href="@{/logout}">Logout</a>
+
   </div>
 </div>
         </div>
       </div>
     </header>
-<body>
 
-<div class="row">
+
+
+	
+	
+	
+	
+	   
+
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="booking-form">
+                    <div class="form-header">
+                       
+                        <a  class="btn btn-primary" href="/form" >Ajouter une annonce de logement</a>
+                        <br><br>
+                        <div class="row">
  	<form th:action="@{index1}" method="get">
- 	<label>Mot clé:</label>
- 	<input type="text" name="motCle" th:value="${mc}"/>
+ 	
+ 	<input placeholder="Mot clé:" type="text" name="motCle" th:value="${mc}"/>
  	<button class="btn btn-primary">Chercher</button>   
  	</form>
  	
 	</div>
+                    </div>
+                      </div>  </div>  </div>  </div>  
 
-<div class="container">
- 	
- 	
-</div>
 
 <div class="container">
 
@@ -140,7 +154,6 @@
 </tbody>
 </table>
 
-<a  class="btn btn-outline-primary" href="/form" >Ajouter un Avis</a>
 </div>
 
 
