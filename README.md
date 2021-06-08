@@ -1,3 +1,13 @@
+**Déploiement  :**
+
+**L’application Principale :**
+
+[**https://fin-tbat.herokuapp.com/**](https://fin-tbat.herokuapp.com/)
+
+**L’application Client de l’architecture Client/Server :**
+
+ [**https://logement-app-front-end.herokuapp.com/**](https://logement-app-front-end.herokuapp.com/)
+ 
 ![1](https://user-images.githubusercontent.com/59047199/121256324-54ede280-c8a4-11eb-99cd-8021058b23b6.png)
 ![2](https://user-images.githubusercontent.com/59047199/121256351-5e774a80-c8a4-11eb-92c3-775b7194279e.png)
 ![3](https://user-images.githubusercontent.com/59047199/121256380-659e5880-c8a4-11eb-979d-b99f3208cf9a.png)
